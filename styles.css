@@ -395,8 +395,7 @@ textarea:focus-visible {
   gap: 10px;
 }
 
-.keyword-chip,
-.language-chip {
+.keyword-chip {
   background: #e6efe7;
   border: 1px solid var(--line);
   color: var(--ink);
@@ -443,14 +442,12 @@ textarea {
   resize: vertical;
 }
 
-.marketplace-section,
-.language-section {
+.marketplace-section {
   background: var(--dark);
   color: #fff;
 }
 
-.marketplace-section .section-heading p:not(.section-kicker),
-.language-section p {
+.marketplace-section .section-heading p:not(.section-kicker) {
   color: rgba(255, 255, 255, 0.72);
 }
 
@@ -659,37 +656,6 @@ textarea {
   margin-top: 18px;
 }
 
-.language-grid {
-  display: grid;
-  gap: clamp(28px, 6vw, 72px);
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
-}
-
-.language-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.language-chip {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.16);
-  color: #fff;
-}
-
-.language-chip.is-active {
-  background: var(--gold);
-  color: var(--ink);
-}
-
-.language-note {
-  min-height: 28px;
-}
-
-.language-request {
-  color: var(--ink);
-}
 
 .site-footer {
   align-items: center;
@@ -752,8 +718,7 @@ textarea {
 
   .hero,
   .form-grid,
-  .saved-requests,
-  .language-grid {
+  .saved-requests {
     grid-template-columns: 1fr;
   }
 

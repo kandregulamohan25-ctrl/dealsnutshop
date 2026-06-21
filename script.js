@@ -9,9 +9,6 @@ const panels = [...document.querySelectorAll("[data-panel]")];
 const requestForms = [...document.querySelectorAll("[data-request-form]")];
 const requestList = document.querySelector("[data-request-list]");
 const clearRequests = document.querySelector("[data-clear-requests]");
-const languageButtons = [...document.querySelectorAll("[data-language]")];
-const languageNote = document.querySelector("[data-language-note]");
-const languageSelect = document.querySelector("[data-language-select]");
 const countdownEl = document.querySelector("[data-countdown]");
 
 const defaultKeywords = [
@@ -161,26 +158,6 @@ clearRequests?.addEventListener("click", () => {
   renderRequests();
 });
 
-const applyLanguage = (language) => {
-  languageButtons.forEach((item) =>
-    item.classList.toggle("is-active", item.dataset.language === language)
-  );
-  if (languageSelect) languageSelect.value = language;
-  if (languageNote) {
-    languageNote.textContent =
-      language === "Simple English"
-        ? "Simple English is active for this first version."
-        : `${language} is planned. Use the request form if you want this added sooner.`;
-  }
-};
-
-languageButtons.forEach((button) => {
-  button.addEventListener("click", () => applyLanguage(button.dataset.language));
-});
-
-languageSelect?.addEventListener("change", () => {
-  applyLanguage(languageSelect.value);
-});
 
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
