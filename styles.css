@@ -287,6 +287,12 @@ textarea:focus-visible {
   color: #fff;
 }
 
+.button--small {
+  font-size: 0.8rem;
+  min-height: 36px;
+  padding: 0 14px;
+}
+
 .freelance-panel {
   align-self: end;
   background: rgba(255, 253, 246, 0.1);
@@ -320,6 +326,25 @@ textarea:focus-visible {
   text-decoration: underline;
   text-decoration-color: var(--gold);
   text-underline-offset: 5px;
+}
+
+.campaign-contacts {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.campaign-contacts p {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin: 0 0 14px 0;
+}
+
+.campaign-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .countdown {
