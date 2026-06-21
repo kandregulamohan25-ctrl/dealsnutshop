@@ -97,39 +97,6 @@
         </aside>
       </section>
 
-      <section class="notice-band" aria-label="Prototype notice">
-        <div>
-          <strong>Early model:</strong>
-          <span>
-            Forms on this version save only in this browser. Later, DealsNut can connect email,
-            WhatsApp, login, admin approval, and live notifications.
-          </span>
-        </div>
-      </section>
-
-      <section class="section" id="services">
-        <div class="section__inner">
-          <div class="section-heading">
-            <p class="section-kicker">Service Keywords</p>
-            <h2>Services can grow as you add new ideas.</h2>
-            <p>
-              Keywords make the site easy to expand. When a new service becomes available, add it
-              here and it will appear with the rest of the marketplace services.
-            </p>
-          </div>
-
-          <div class="keyword-board">
-            <div class="keyword-list" data-keyword-list aria-label="DealsNut service keywords"></div>
-            <form class="keyword-form" data-keyword-form>
-              <label for="new-keyword">Add a service keyword</label>
-              <div>
-                <input id="new-keyword" name="keyword" type="text" placeholder="Example: logo design" />
-                <button class="button button--dark" type="submit">Add</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
 
       <section class="section marketplace-section" id="marketplace">
         <div class="section__inner">
@@ -212,135 +179,15 @@
       <section class="section forms-section" id="requests">
         <div class="section__inner">
           <div class="section-heading">
-            <p class="section-kicker">Post Requests</p>
-            <h2>Simple forms for the first version.</h2>
+            <p class="section-kicker">Direct Requests</p>
+            <h2>How to place a request?</h2>
             <p>
-              These forms are designed for the no-backend stage. They show how people can request
-              work, food, or product finding without making their contact number public.
+              Simply message us with what you need. We'll check feasibility and get back to you immediately.
             </p>
           </div>
-
-          <div class="form-grid">
-            <form class="request-form" id="business-form" data-request-form data-type="Business">
-              <h3>Request Business Help</h3>
-              <label>
-                Your name
-                <input name="name" type="text" placeholder="Name or business name" required />
-              </label>
-              <label>
-                What do you need?
-                <select name="need" required>
-                  <option value="">Choose one</option>
-                  <option>Website making</option>
-                  <option>Business promotion</option>
-                  <option>Posters and designs</option>
-                  <option>Social media marketing</option>
-                  <option>Instagram growth</option>
-                  <option>Online ads</option>
-                  <option>Video editing</option>
-                </select>
-              </label>
-              <label>
-                Details
-                <textarea name="details" placeholder="Tell what you want to improve or sell." required></textarea>
-              </label>
-              <label>
-                Optional contact
-                <input name="contact" type="text" placeholder="Email, Instagram, or phone if comfortable" />
-              </label>
-              <button class="button button--primary" type="submit">Save Request</button>
-            </form>
-
-            <form class="request-form" data-request-form data-type="Friends">
-              <h3>Request Friends Service</h3>
-              <label>
-                Service
-                <select name="need" required>
-                  <option value="">Choose one</option>
-                  <option>Embroidery</option>
-                  <option>Record writing</option>
-                  <option>Project help</option>
-                  <option>Assignments</option>
-                  <option>Delivery</option>
-                  <option>Design</option>
-                  <option>Tutoring</option>
-                </select>
-              </label>
-              <label>
-                Your name
-                <input name="name" type="text" placeholder="Name" required />
-              </label>
-              <label>
-                Details
-                <textarea name="details" placeholder="Explain the work, deadline, and place." required></textarea>
-              </label>
-              <label>
-                Optional contact
-                <input name="contact" type="text" placeholder="Only if you want admin to reach you" />
-              </label>
-              <button class="button button--primary" type="submit">Save Request</button>
-            </form>
-
-            <form class="request-form" data-request-form data-type="Food">
-              <h3>Request Home Food</h3>
-              <label>
-                Food needed
-                <input name="need" type="text" placeholder="Example: idli, biryani, meals" required />
-              </label>
-              <label>
-                Your name
-                <input name="name" type="text" placeholder="Name" required />
-              </label>
-              <label>
-                Details
-                <textarea
-                  name="details"
-                  placeholder="Quantity, date, pickup or delivery preference, area."
-                  required
-                ></textarea>
-              </label>
-              <label>
-                Optional contact
-                <input name="contact" type="text" placeholder="Email, Instagram, or phone if comfortable" />
-              </label>
-              <button class="button button--primary" type="submit">Save Food Request</button>
-            </form>
-
-            <form class="request-form" data-request-form data-type="Product">
-              <h3>Post Product Idea</h3>
-              <label>
-                Product you want
-                <input name="need" type="text" placeholder="Describe the product you imagine" required />
-              </label>
-              <label>
-                Your name
-                <input name="name" type="text" placeholder="Name or anonymous" required />
-              </label>
-              <label>
-                Details
-                <textarea
-                  name="details"
-                  placeholder="Use, budget, size, color, brand, or where you saw it."
-                  required
-                ></textarea>
-              </label>
-              <label>
-                Optional contact
-                <input name="contact" type="text" placeholder="Only if you want an update later" />
-              </label>
-              <button class="button button--primary" type="submit">Post Product Request</button>
-            </form>
-          </div>
-
-          <div class="request-board">
-            <div class="request-board__top">
-              <div>
-                <p class="section-kicker">Saved Prototype Requests</p>
-                <h3>Local request board</h3>
-              </div>
-              <button class="button button--dark" type="button" data-clear-requests>Clear Demo</button>
-            </div>
-            <div class="saved-requests" data-request-list></div>
+          <div class="request-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a class="button button--primary" href="https://wa.me/" target="_blank" rel="noreferrer" onclick="alert('WhatsApp number pending! We will update this soon.')">Message on WhatsApp</a>
+            <a class="button button--dark" href="https://www.instagram.com/dealsnut_shop/" target="_blank" rel="noreferrer">DM on Instagram</a>
           </div>
         </div>
       </section>
@@ -373,6 +220,30 @@
                 Visit project
               </a>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Service Keywords</p>
+            <h2>Services can grow as you add new ideas.</h2>
+            <p>
+              Keywords make the site easy to expand. When a new service becomes available, add it
+              here and it will appear with the rest of the marketplace services.
+            </p>
+          </div>
+
+          <div class="keyword-board">
+            <div class="keyword-list" data-keyword-list aria-label="DealsNut service keywords"></div>
+            <form class="keyword-form" data-keyword-form>
+              <label for="new-keyword">Add a service keyword</label>
+              <div>
+                <input id="new-keyword" name="keyword" type="text" placeholder="Example: logo design" />
+                <button class="button button--dark" type="submit">Add</button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
