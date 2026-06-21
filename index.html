@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DealsNut | Local Services Marketplace</title>
+    <meta
+      name="description"
+      content="DealsNut is an early local services marketplace by K Mohan for websites, business promotion, product finding, home food requests, and student services."
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%23e35b4f'/><text x='50' y='72' font-family='Arial,sans-serif' font-size='50' font-weight='900' text-anchor='middle' fill='white'>DN</text></svg>" />
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DealsNut | Local Services Marketplace" />
+    <meta property="og:description" content="DealsNut is a local services marketplace for Andaman — websites, business promotion, home food, product finding, and student services by K Mohan." />
+    <meta property="og:image" content="assets/hero-studio.png" />
+    <meta property="og:url" content="https://dealsnut.vercel.app" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DealsNut | Local Services Marketplace" />
+    <meta name="twitter:description" content="DealsNut is a local services marketplace for Andaman — websites, business promotion, home food, product finding, and student services." />
+    <meta name="twitter:image" content="assets/hero-studio.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="DealsNut home">
+        <span class="brand-mark">DN</span>
+        <span class="brand-name">DealsNut</span>
+      </a>
+      <div class="header-right">
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#home">Trending</a>
+          <a href="#services">Services</a>
+          <a href="#marketplace">Marketplace</a>
+          <a href="#requests">Requests</a>
+          <a href="#projects">Projects</a>
+        </nav>
+        <label class="language-menu" for="site-language">
+          <span>Lang</span>
+          <select id="site-language" data-language-select>
+            <option>Simple English</option>
+            <option>Hindi + English</option>
+            <option>Local mix</option>
+            <option>Telugu</option>
+            <option>Tamil</option>
+            <option>Request another</option>
+          </select>
+        </label>
+        <a class="social-mini" href="https://www.instagram.com/dealsnut_shop/" target="_blank" rel="noreferrer">
+          Instagram
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-label="Trending Today campaign">
+        <img class="hero__image" src="assets/hero-studio.png" alt="" />
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Trending Today | Limited Andaman order window</p>
+          <h1>Trending Today</h1>
+          <p class="hero__lead">
+            Need something that is hard to get delivered to Andaman? Post what you want.
+            DealsNut will check availability, price, parcel options, and confirmation before moving ahead.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#campaign-order">Place an Order Request</a>
+            <a class="button button--ghost" href="#services">Explore Services</a>
+          </div>
+        </div>
+        <aside class="freelance-panel campaign-card" id="campaign-order" aria-label="DealsNut campaign details">
+          <p class="panel-label">Festival-style campaign</p>
+          <h2>Order Window</h2>
+          <p>For products that are useful, trending, or difficult to source locally.</p>
+          <ul>
+            <li>Request closes before July 5, 2026</li>
+            <li>Price and availability are checked first</li>
+            <li>Orders move only after confirmation</li>
+          </ul>
+          <p class="countdown" data-countdown="2026-07-05" aria-live="polite"></p>
+          <a class="panel-link" href="mailto:dealsnutshop@gmail.com">dealsnutshop@gmail.com</a>
+        </aside>
+      </section>
+
+      <section class="notice-band" aria-label="Prototype notice">
+        <div>
+          <strong>Early model:</strong>
+          <span>
+            Forms on this version save only in this browser. Later, DealsNut can connect email,
+            WhatsApp, login, admin approval, and live notifications.
+          </span>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Service Keywords</p>
+            <h2>Services can grow as you add new ideas.</h2>
+            <p>
+              Keywords make the site easy to expand. When a new service becomes available, add it
+              here and it will appear with the rest of the marketplace services.
+            </p>
+          </div>
+
+          <div class="keyword-board">
+            <div class="keyword-list" data-keyword-list aria-label="DealsNut service keywords"></div>
+            <form class="keyword-form" data-keyword-form>
+              <label for="new-keyword">Add a service keyword</label>
+              <div>
+                <input id="new-keyword" name="keyword" type="text" placeholder="Example: logo design" />
+                <button class="button button--dark" type="submit">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section marketplace-section" id="marketplace">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Marketplace Panels</p>
+            <h2>One brand, separate spaces for different kinds of work.</h2>
+          </div>
+
+          <div class="panel-tabs" role="tablist" aria-label="Marketplace panels">
+            <button class="panel-tab is-active" type="button" data-panel-target="business">
+              Business
+            </button>
+            <button class="panel-tab" type="button" data-panel-target="friends">Friends</button>
+            <button class="panel-tab" type="button" data-panel-target="food">Home Food</button>
+            <button class="panel-tab" type="button" data-panel-target="products">
+              Product Hunt
+            </button>
+          </div>
+
+          <div class="panel-grid">
+            <article class="service-panel is-active" data-panel="business">
+              <span class="panel-number">01</span>
+              <h3>Business Growth Help</h3>
+              <p>
+                For local shops, small businesses, and owners who need a website, posters, social
+                media, online ads, Instagram growth, video editing, or simple digital promotion.
+              </p>
+              <ul>
+                <li>Good for local business owners who want more people to discover them.</li>
+                <li>Requests are reviewed by K Mohan before accepting the work.</li>
+                <li>Pricing and timeline can be discussed after understanding the work.</li>
+              </ul>
+            </article>
+
+            <article class="service-panel" data-panel="friends">
+              <span class="panel-number">02</span>
+              <h3>Friends Service Panel</h3>
+              <p>
+                A separate space for verified student work like embroidery, record writing, project
+                help, assignments, delivery, design, tutoring, and any useful local task.
+              </p>
+              <ul>
+                <li>Every service should be checked by admin before being shown seriously.</li>
+                <li>People can request work without publicly sharing a phone number.</li>
+                <li>Bad or unsafe requests can be rejected before contacting anyone.</li>
+              </ul>
+            </article>
+
+            <article class="service-panel" data-panel="food">
+              <span class="panel-number">03</span>
+              <h3>Home Food Requests</h3>
+              <p>
+                An early Andaman food idea where home cooks can list what they can prepare, and
+                people can request food they need.
+              </p>
+              <ul>
+                <li>This is not a regular delivery app promise yet.</li>
+                <li>DealsNut can enquire if someone can cook the requested food.</li>
+                <li>If delivery is not accepted, the customer may pick it up and save delivery cost.</li>
+              </ul>
+            </article>
+
+            <article class="service-panel" data-panel="products">
+              <span class="panel-number">04</span>
+              <h3>Product Request Board</h3>
+              <p>
+                People can imagine a product they want and post it. DealsNut can try to find a
+                similar item, sell it later, or inform businesses that many people are asking for it.
+              </p>
+              <ul>
+                <li>Useful for discovering local demand before buying stock.</li>
+                <li>Can become a selling and sourcing feature later.</li>
+                <li>For now, requests stay on this website prototype.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section forms-section" id="requests">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Post Requests</p>
+            <h2>Simple forms for the first version.</h2>
+            <p>
+              These forms are designed for the no-backend stage. They show how people can request
+              work, food, or product finding without making their contact number public.
+            </p>
+          </div>
+
+          <div class="form-grid">
+            <form class="request-form" id="business-form" data-request-form data-type="Business">
+              <h3>Request Business Help</h3>
+              <label>
+                Your name
+                <input name="name" type="text" placeholder="Name or business name" required />
+              </label>
+              <label>
+                What do you need?
+                <select name="need" required>
+                  <option value="">Choose one</option>
+                  <option>Website making</option>
+                  <option>Business promotion</option>
+                  <option>Posters and designs</option>
+                  <option>Social media marketing</option>
+                  <option>Instagram growth</option>
+                  <option>Online ads</option>
+                  <option>Video editing</option>
+                </select>
+              </label>
+              <label>
+                Details
+                <textarea name="details" placeholder="Tell what you want to improve or sell." required></textarea>
+              </label>
+              <label>
+                Optional contact
+                <input name="contact" type="text" placeholder="Email, Instagram, or phone if comfortable" />
+              </label>
+              <button class="button button--primary" type="submit">Save Request</button>
+            </form>
+
+            <form class="request-form" data-request-form data-type="Friends">
+              <h3>Request Friends Service</h3>
+              <label>
+                Service
+                <select name="need" required>
+                  <option value="">Choose one</option>
+                  <option>Embroidery</option>
+                  <option>Record writing</option>
+                  <option>Project help</option>
+                  <option>Assignments</option>
+                  <option>Delivery</option>
+                  <option>Design</option>
+                  <option>Tutoring</option>
+                </select>
+              </label>
+              <label>
+                Your name
+                <input name="name" type="text" placeholder="Name" required />
+              </label>
+              <label>
+                Details
+                <textarea name="details" placeholder="Explain the work, deadline, and place." required></textarea>
+              </label>
+              <label>
+                Optional contact
+                <input name="contact" type="text" placeholder="Only if you want admin to reach you" />
+              </label>
+              <button class="button button--primary" type="submit">Save Request</button>
+            </form>
+
+            <form class="request-form" data-request-form data-type="Food">
+              <h3>Request Home Food</h3>
+              <label>
+                Food needed
+                <input name="need" type="text" placeholder="Example: idli, biryani, meals" required />
+              </label>
+              <label>
+                Your name
+                <input name="name" type="text" placeholder="Name" required />
+              </label>
+              <label>
+                Details
+                <textarea
+                  name="details"
+                  placeholder="Quantity, date, pickup or delivery preference, area."
+                  required
+                ></textarea>
+              </label>
+              <label>
+                Optional contact
+                <input name="contact" type="text" placeholder="Email, Instagram, or phone if comfortable" />
+              </label>
+              <button class="button button--primary" type="submit">Save Food Request</button>
+            </form>
+
+            <form class="request-form" data-request-form data-type="Product">
+              <h3>Post Product Idea</h3>
+              <label>
+                Product you want
+                <input name="need" type="text" placeholder="Describe the product you imagine" required />
+              </label>
+              <label>
+                Your name
+                <input name="name" type="text" placeholder="Name or anonymous" required />
+              </label>
+              <label>
+                Details
+                <textarea
+                  name="details"
+                  placeholder="Use, budget, size, color, brand, or where you saw it."
+                  required
+                ></textarea>
+              </label>
+              <label>
+                Optional contact
+                <input name="contact" type="text" placeholder="Only if you want an update later" />
+              </label>
+              <button class="button button--primary" type="submit">Post Product Request</button>
+            </form>
+          </div>
+
+          <div class="request-board">
+            <div class="request-board__top">
+              <div>
+                <p class="section-kicker">Saved Prototype Requests</p>
+                <h3>Local request board</h3>
+              </div>
+              <button class="button button--dark" type="button" data-clear-requests>Clear Demo</button>
+            </div>
+            <div class="saved-requests" data-request-list></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Built Work</p>
+            <h2>Projects by K Mohan.</h2>
+            <p>
+              These are existing projects and can be refined more as DealsNut grows into a stronger
+              showcase.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card">
+              <span>Website Project</span>
+              <h3>Medication Ninja</h3>
+              <p>A web project that can be improved and shown as part of the DealsNut portfolio.</p>
+              <a href="https://medication-ninja.vercel.app" target="_blank" rel="noreferrer">
+                Visit project
+              </a>
+            </article>
+            <article class="project-card">
+              <span>Business Website</span>
+              <h3>Sri Balaji Traders</h3>
+              <p>A local business website project that fits the future business-help direction.</p>
+              <a href="https://sri-balaji-traders.vercel.app" target="_blank" rel="noreferrer">
+                Visit project
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section language-section" id="language">
+        <div class="section__inner language-grid">
+          <div>
+            <p class="section-kicker">Language</p>
+            <h2>Simple English first, more languages later.</h2>
+            <p>
+              DealsNut can grow with Simple English, Hindi plus English, a local-friendly mix,
+              Telugu, and Tamil. Visitors can also ask for another language to be added.
+            </p>
+            <div class="language-options" aria-label="Language options">
+              <button class="language-chip is-active" type="button" data-language="Simple English">
+                Simple English
+              </button>
+              <button class="language-chip" type="button" data-language="Hindi + English">
+                Hindi + English
+              </button>
+              <button class="language-chip" type="button" data-language="Local mix">Local mix</button>
+              <button class="language-chip" type="button" data-language="Telugu">Telugu</button>
+              <button class="language-chip" type="button" data-language="Tamil">Tamil</button>
+            </div>
+            <p class="language-note" data-language-note>
+              Simple English is active for this first version.
+            </p>
+          </div>
+
+          <form class="request-form language-request" data-request-form data-type="Language">
+            <h3>Ask to add a language</h3>
+            <label>
+              Language name
+              <input name="need" type="text" placeholder="Example: Bengali, Malayalam" required />
+            </label>
+            <label>
+              Why it is useful
+              <textarea name="details" placeholder="Tell where this language is needed." required></textarea>
+            </label>
+            <label>
+              Your name
+              <input name="name" type="text" placeholder="Name" required />
+            </label>
+            <label>
+              Optional contact
+              <input name="contact" type="text" placeholder="Only if you want a reply" />
+            </label>
+            <button class="button button--primary" type="submit">Save Language Request</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span data-year></span> DealsNut by K Mohan</p>
+      <p><a href="mailto:dealsnutshop@gmail.com" class="footer-email">dealsnutshop@gmail.com</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
