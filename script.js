@@ -217,7 +217,7 @@ const authError = document.getElementById("auth-error");
 // Toggle Modal — open immediately, no async needed
 authNavBtn?.addEventListener("click", () => {
   if (authNavBtn.textContent.trim() === "Sign Out") {
-    supabase.auth.signOut();
+    db.auth.signOut();
   } else {
     authModal.style.display = "flex";
   }
@@ -257,10 +257,10 @@ authForm?.addEventListener("submit", async (e) => {
 
   try {
     if (isLoginMode) {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await db.auth.signInWithPassword({ email, password });
       if (error) throw error;
     } else {
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await db.auth.signUp({ email, password });
       if (error) throw error;
       if (data?.user && data?.session === null) {
         authError.textContent = "Check your email for the confirmation link.";
@@ -286,7 +286,7 @@ authForm?.addEventListener("submit", async (e) => {
 });
 
 // Listen for Auth State Changes
-supabase.auth.onAuthStateChange((event, session) => {
+db.auth.onAuthStateChange((event, session) => {
   if (session) {
     authNavBtn.textContent = "Sign Out";
   } else {
