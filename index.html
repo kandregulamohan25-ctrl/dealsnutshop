@@ -33,12 +33,11 @@
         <span class="brand-name">DealsNut</span>
       </a>
       <div class="header-right">
-        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-          <a href="#home">Trending</a>
+        <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
           <a href="#services">Services</a>
           <a href="#marketplace">Marketplace</a>
-          <a href="#requests">Requests</a>
           <a href="#projects">Projects</a>
+          <button id="auth-nav-btn" class="button button--ghost button--small" style="margin-left: 12px; height: 32px; min-height: unset;">Sign In</button>
         </nav>
 
         <div class="social-icons" aria-label="Social media links">
@@ -304,6 +303,33 @@
       </div>
     </footer>
 
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <button id="close-auth-modal" class="modal-close" aria-label="Close modal">&times;</button>
+        <h2 id="auth-title">Sign In</h2>
+        <form id="auth-form" class="auth-form">
+          <label>
+            Email
+            <input type="email" id="auth-email" required placeholder="name@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" id="auth-password" required placeholder="********" />
+          </label>
+          <p id="auth-error" class="auth-error" style="color: var(--coral); font-size: 0.85rem; font-weight: bold; display: none;"></p>
+          <button type="submit" id="auth-submit-btn" class="button button--primary" style="width: 100%; margin-top: 12px;">Sign In</button>
+        </form>
+        <p class="auth-toggle-text">
+          <span id="auth-toggle-msg">Don't have an account?</span> 
+          <button type="button" id="auth-toggle-btn" class="text-button">Register here</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="script.js"></script>
     <!-- Vercel Analytics (plain HTML) -->
     <script defer src="/_vercel/insights/script.js"></script>

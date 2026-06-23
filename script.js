@@ -201,3 +201,90 @@ function updateCountdown() {
   setTimeout(updateCountdown, 30 * 1000);
 }
 updateCountdown();
+
+// --- Supabase Authentication Logic ---
+let isLoginMode = true;
+const authNavBtn = document.getElementById("auth-nav-btn");
+const authModal = document.getElementById("auth-modal");
+const closeAuthModal = document.getElementById("close-auth-modal");
+const authForm = document.getElementById("auth-form");
+const authTitle = document.getElementById("auth-title");
+const authSubmitBtn = document.getElementById("auth-submit-btn");
+const authToggleBtn = document.getElementById("auth-toggle-btn");
+const authToggleMsg = document.getElementById("auth-toggle-msg");
+const authError = document.getElementById("auth-error");
+
+// Toggle Modal
+authNavBtn?.addEventListener("click", async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    // Log out
+    await supabase.auth.signOut();
+  } else {
+    // Open Modal
+    authModal.style.display = "flex";
+  }
+});
+
+closeAuthModal?.addEventListener("click", () => {
+  authModal.style.display = "none";
+});
+
+// Switch between Login and Register
+authToggleBtn?.addEventListener("click", () => {
+  isLoginMode = !isLoginMode;
+  authTitle.textContent = isLoginMode ? "Sign In" : "Register";
+  authSubmitBtn.textContent = isLoginMode ? "Sign In" : "Create Account";
+  authToggleMsg.textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
+  authToggleBtn.textContent = isLoginMode ? "Register here" : "Sign In";
+  authError.style.display = "none";
+});
+
+// Handle Form Submit
+authForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  authSubmitBtn.disabled = true;
+  authSubmitBtn.textContent = "Loading...";
+  authError.style.display = "none";
+
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+
+  try {
+    if (isLoginMode) {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+    } else {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) throw error;
+      if (data?.user && data?.session === null) {
+        authError.textContent = "Check your email for the confirmation link.";
+        authError.style.display = "block";
+        authError.style.color = "var(--gold)";
+        authSubmitBtn.disabled = false;
+        authSubmitBtn.textContent = "Create Account";
+        return;
+      }
+    }
+    
+    // Success
+    authModal.style.display = "none";
+    authForm.reset();
+  } catch (err) {
+    authError.textContent = err.message;
+    authError.style.display = "block";
+    authError.style.color = "var(--coral)";
+  } finally {
+    authSubmitBtn.disabled = false;
+    authSubmitBtn.textContent = isLoginMode ? "Sign In" : "Create Account";
+  }
+});
+
+// Listen for Auth State Changes
+supabase.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    authNavBtn.textContent = "Sign Out";
+  } else {
+    authNavBtn.textContent = "Sign In";
+  }
+});

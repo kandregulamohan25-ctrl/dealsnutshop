@@ -823,6 +823,113 @@ textarea {
   }
 
   .site-nav {
+    background: var(--dark);
+    flex-direction: column;
+    left: 0;
+    opacity: 0;
+    padding: 80px 20px 20px;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-10px);
+    visibility: hidden;
+    width: 100%;
+    z-index: 90;
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .site-nav a {
+    font-size: 1.2rem;
+    padding: 12px 0;
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  max-width: 400px;
+  padding: 32px;
+  position: relative;
+  width: 100%;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.auth-toggle-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.text-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.text-button:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 980px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
     background: rgba(18, 24, 25, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.14);
     display: grid;
