@@ -236,13 +236,16 @@ authModal?.addEventListener("click", (e) => {
 });
 
 // Switch between Login and Register
+const registerFields = document.getElementById("register-fields");
 authToggleBtn?.addEventListener("click", () => {
   isLoginMode = !isLoginMode;
-  authTitle.textContent = isLoginMode ? "Sign In" : "Register";
+  authTitle.textContent = isLoginMode ? "Sign In" : "Create Account";
   authSubmitBtn.textContent = isLoginMode ? "Sign In" : "Create Account";
   authToggleMsg.textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
   authToggleBtn.textContent = isLoginMode ? "Register here" : "Sign In";
   authError.style.display = "none";
+  // Show/hide extra register fields
+  registerFields.style.display = isLoginMode ? "none" : "flex";
 });
 
 // Handle Form Submit
@@ -252,18 +255,36 @@ authForm?.addEventListener("submit", async (e) => {
   authSubmitBtn.textContent = "Loading...";
   authError.style.display = "none";
 
-  const email = document.getElementById("auth-email").value;
+  const email = document.getElementById("auth-email").value.trim();
   const password = document.getElementById("auth-password").value;
 
   try {
     if (isLoginMode) {
+      // --- LOGIN ---
       const { error } = await db.auth.signInWithPassword({ email, password });
       if (error) throw error;
     } else {
+      // --- REGISTER ---
+      const fullName = document.getElementById("auth-fullname").value.trim();
+      const phone = document.getElementById("auth-phone").value.trim();
+      const role = document.getElementById("auth-role").value;
+
       const { data, error } = await db.auth.signUp({ email, password });
       if (error) throw error;
+
+      // Save extra profile info to the profiles table
+      if (data?.user) {
+        await db.from("profiles").upsert({
+          id: data.user.id,
+          full_name: fullName,
+          phone: phone,
+          role: role,
+        });
+      }
+
+      // Show success if email confirmation is needed
       if (data?.user && data?.session === null) {
-        authError.textContent = "Check your email for the confirmation link.";
+        authError.textContent = "✅ Account created! Check your email to confirm, then sign in.";
         authError.style.display = "block";
         authError.style.color = "var(--gold)";
         authSubmitBtn.disabled = false;
@@ -271,10 +292,17 @@ authForm?.addEventListener("submit", async (e) => {
         return;
       }
     }
-    
-    // Success
+
+    // Success — close modal
     authModal.style.display = "none";
     authForm.reset();
+    registerFields.style.display = "none";
+    isLoginMode = true;
+    authTitle.textContent = "Sign In";
+    authSubmitBtn.textContent = "Sign In";
+    authToggleMsg.textContent = "Don't have an account?";
+    authToggleBtn.textContent = "Register here";
+
   } catch (err) {
     authError.textContent = err.message;
     authError.style.display = "block";

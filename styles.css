@@ -1060,3 +1060,39 @@ textarea {
     flex-direction: column;
   }
 }
+
+/* Auth form inputs and select */
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.auth-form input,
+.auth-form select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: var(--gold);
+}
+
+.auth-form select option {
+  background: #1a1a1a;
+  color: #fff;
+}

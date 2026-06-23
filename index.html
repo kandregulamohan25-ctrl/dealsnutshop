@@ -309,19 +309,40 @@
         <button id="close-auth-modal" class="modal-close" aria-label="Close modal">&times;</button>
         <h2 id="auth-title">Sign In</h2>
         <form id="auth-form" class="auth-form">
+          <!-- Register-only fields (hidden during login) -->
+          <div id="register-fields" style="display: none; flex-direction: column; gap: 16px;">
+            <label>
+              Full Name
+              <input type="text" id="auth-fullname" placeholder="Your full name" />
+            </label>
+            <label>
+              Phone Number
+              <input type="tel" id="auth-phone" placeholder="e.g. 9876543210" />
+            </label>
+            <label>
+              I am a...
+              <select id="auth-role">
+                <option value="customer">Customer — I want to buy / request things</option>
+                <option value="freelancer">Freelancer / Student — I want to offer services</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Always visible fields -->
           <label>
             Email
             <input type="email" id="auth-email" required placeholder="name@example.com" />
           </label>
           <label>
             Password
-            <input type="password" id="auth-password" required placeholder="********" />
+            <input type="password" id="auth-password" required placeholder="Min. 6 characters" />
           </label>
-          <p id="auth-error" class="auth-error" style="color: var(--coral); font-size: 0.85rem; font-weight: bold; display: none;"></p>
-          <button type="submit" id="auth-submit-btn" class="button button--primary" style="width: 100%; margin-top: 12px;">Sign In</button>
+
+          <p id="auth-error" style="font-size: 0.85rem; font-weight: bold; display: none; margin: 0;"></p>
+          <button type="submit" id="auth-submit-btn" class="button button--primary" style="width: 100%; margin-top: 4px;">Sign In</button>
         </form>
         <p class="auth-toggle-text">
-          <span id="auth-toggle-msg">Don't have an account?</span> 
+          <span id="auth-toggle-msg">Don't have an account?</span>
           <button type="button" id="auth-toggle-btn" class="text-button">Register here</button>
         </p>
       </div>
