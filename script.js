@@ -214,20 +214,25 @@ const authToggleBtn = document.getElementById("auth-toggle-btn");
 const authToggleMsg = document.getElementById("auth-toggle-msg");
 const authError = document.getElementById("auth-error");
 
-// Toggle Modal
-authNavBtn?.addEventListener("click", async () => {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
-    // Log out
-    await supabase.auth.signOut();
+// Toggle Modal — open immediately, no async needed
+authNavBtn?.addEventListener("click", () => {
+  if (authNavBtn.textContent.trim() === "Sign Out") {
+    supabase.auth.signOut();
   } else {
-    // Open Modal
     authModal.style.display = "flex";
   }
 });
 
+// Close on X button
 closeAuthModal?.addEventListener("click", () => {
   authModal.style.display = "none";
+});
+
+// Close when clicking outside the modal box
+authModal?.addEventListener("click", (e) => {
+  if (e.target === authModal) {
+    authModal.style.display = "none";
+  }
 });
 
 // Switch between Login and Register
