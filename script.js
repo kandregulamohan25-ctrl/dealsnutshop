@@ -282,8 +282,11 @@ const authError = document.getElementById("auth-error");
 
 // Toggle Modal — open immediately, no async needed
 authNavBtn?.addEventListener("click", () => {
-  if (authNavBtn.textContent.trim() === "Sign Out") {
+  const btnText = authNavBtn.textContent.trim();
+  if (btnText === "Sign Out") {
     db.auth.signOut();
+  } else if (btnText === "My Account") {
+    window.location.href = "dashboard.html";
   } else {
     authModal.style.display = "flex";
   }
@@ -359,7 +362,7 @@ authForm?.addEventListener("submit", async (e) => {
       }
     }
 
-    // Success — close modal
+    // Success — redirect to dashboard
     authModal.style.display = "none";
     authForm.reset();
     registerFields.style.display = "none";
@@ -368,6 +371,7 @@ authForm?.addEventListener("submit", async (e) => {
     authSubmitBtn.textContent = "Sign In";
     authToggleMsg.textContent = "Don't have an account?";
     authToggleBtn.textContent = "Register here";
+    window.location.href = "dashboard.html";
 
   } catch (err) {
     authError.textContent = err.message;
@@ -382,7 +386,7 @@ authForm?.addEventListener("submit", async (e) => {
 // Listen for Auth State Changes
 db.auth.onAuthStateChange((event, session) => {
   if (session) {
-    authNavBtn.textContent = "Sign Out";
+    authNavBtn.textContent = "My Account";
   } else {
     authNavBtn.textContent = "Sign In";
   }
