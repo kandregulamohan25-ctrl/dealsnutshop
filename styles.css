@@ -1244,3 +1244,37 @@ textarea {
 .btn-ig {
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
 }
+
+/* Services Board Filter Tabs */
+.svc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  margin-bottom: 4px;
+}
+
+.svc-filter-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  transition: all 0.2s ease;
+}
+
+.svc-filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.svc-filter-btn.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}

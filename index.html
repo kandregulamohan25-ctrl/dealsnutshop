@@ -34,7 +34,8 @@
       </a>
       <div class="header-right">
         <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
-          <a href="#services">Services</a>
+          <a href="#shop">Shop</a>
+          <a href="#services-board">Services</a>
           <a href="#marketplace">Marketplace</a>
           <a href="#projects">Projects</a>
           <button id="auth-nav-btn" class="button button--ghost button--small" style="margin-left: 12px; height: 32px; min-height: unset;">Sign In</button>
@@ -106,6 +107,38 @@
           </div>
           <div class="product-grid" id="product-grid">
             <!-- Products rendered by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Freelancer Services Board -->
+      <section class="section" id="services-board">
+        <div class="section__inner">
+          <div class="section-heading">
+            <p class="section-kicker">Freelancer Services</p>
+            <h2>Local Talent. Real Work.</h2>
+            <p>These services are offered by verified students and freelancers from Andaman. Contact them directly to place an order or discuss your needs.</p>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="svc-filters" id="svc-filters" role="tablist" aria-label="Filter services by category">
+            <button class="svc-filter-btn is-active" data-cat="all">All</button>
+            <button class="svc-filter-btn" data-cat="Jewellery">Jewellery</button>
+            <button class="svc-filter-btn" data-cat="Embroidery">Embroidery</button>
+            <button class="svc-filter-btn" data-cat="Tutoring">Tutoring</button>
+            <button class="svc-filter-btn" data-cat="Design">Design</button>
+            <button class="svc-filter-btn" data-cat="Food">Home Food</button>
+            <button class="svc-filter-btn" data-cat="Other">Other</button>
+          </div>
+
+          <div class="product-grid" id="services-grid">
+            <!-- Loaded from Supabase by JavaScript -->
+            <p class="svc-loading" style="color:var(--muted); grid-column:1/-1; text-align:center;">Loading services…</p>
+          </div>
+
+          <div id="svc-empty" style="display:none; text-align:center; padding:40px 0;">
+            <p style="color:var(--muted);">No services found in this category yet.</p>
+            <p style="color:var(--muted); font-size:0.88rem;">Are you a student or freelancer? <a href="#" id="svc-register-link" style="color:var(--gold); font-weight:700;">Register and list your service!</a></p>
           </div>
         </div>
       </section>
