@@ -53,6 +53,12 @@ async function loadDashboard(user) {
     document.getElementById("edit-name").value  = profile.full_name  || "";
     document.getElementById("edit-phone").value = profile.phone      || "";
     document.getElementById("edit-role").value  = profile.role       || "customer";
+
+    // Show freelancer section if role is freelancer
+    if (role === "freelancer") {
+      document.getElementById("freelancer-section").style.display = "block";
+      loadMyServices(user.id);
+    }
   }
 
   // Load orders
@@ -155,3 +161,108 @@ dashSignoutBtn?.addEventListener("click", async () => {
   await db.auth.signOut();
   window.location.href = "index.html";
 });
+
+// --- Freelancer: Load My Services ---
+async function loadMyServices(userId) {
+  const list = document.getElementById("my-services-list");
+
+  const { data: services, error } = await db
+    .from("freelancer_services")
+    .select("*")
+    .eq("freelancer_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error || !services || services.length === 0) {
+    list.innerHTML = `<div class="empty-state">No services listed yet. Click "+ List New Service" to get started!</div>`;
+    return;
+  }
+
+  const statusColors = {
+    pending:  { bg: "rgba(255,200,0,0.12)",  color: "#ffc800" },
+    approved: { bg: "rgba(0,200,100,0.12)",  color: "#00c864" },
+    rejected: { bg: "rgba(255,80,80,0.12)",  color: "#ff5050" },
+  };
+
+  list.innerHTML = services.map((s) => {
+    const sc = statusColors[s.status] || statusColors.pending;
+    return `
+    <div class="order-item" style="align-items:flex-start; flex-direction:column; gap:10px;">
+      <div style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:8px;">
+        <div>
+          <div class="order-name">${s.title}</div>
+          <div style="font-size:0.78rem; color:var(--muted);">${s.category || ""} ${s.price ? "· ₹" + s.price + " " + (s.price_label || "") : ""}</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span style="font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:20px; background:${sc.bg}; color:${sc.color}; text-transform:uppercase; letter-spacing:0.06em;">
+            ${s.status}
+          </span>
+          <button onclick="deleteService(${s.id})" style="background:transparent; border:1px solid var(--line); border-radius:6px; color:var(--coral); cursor:pointer; font-size:0.75rem; font-weight:700; padding:3px 10px;">Delete</button>
+        </div>
+      </div>
+      <p style="font-size:0.82rem; color:var(--muted); margin:0;">${s.description || ""}</p>
+      ${s.status === "pending" ? `<small style="color:var(--muted); font-size:0.75rem;">⏳ Waiting for admin approval before going live on the site.</small>` : ""}
+      ${s.status === "rejected" ? `<small style="color:#ff5050; font-size:0.75rem;">❌ This listing was not approved. Please edit and resubmit or contact DealsNut.</small>` : ""}
+    </div>`;
+  }).join("");
+}
+
+// --- Freelancer: Toggle Service Form ---
+document.getElementById("toggle-service-form-btn")?.addEventListener("click", () => {
+  const form = document.getElementById("service-form");
+  const isVisible = form.style.display === "block";
+  form.style.display = isVisible ? "none" : "block";
+  document.getElementById("toggle-service-form-btn").textContent = isVisible ? "+ List New Service" : "✕ Cancel";
+});
+
+// --- Freelancer: Submit New Service ---
+document.getElementById("service-form")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("svc-form-msg");
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Submitting…";
+  msg.style.display = "none";
+
+  const { data: { session } } = await db.auth.getSession();
+  if (!session) return;
+
+  const { error } = await db.from("freelancer_services").insert({
+    freelancer_id: session.user.id,
+    title:         document.getElementById("svc-title").value.trim(),
+    description:   document.getElementById("svc-desc").value.trim(),
+    category:      document.getElementById("svc-category").value,
+    price:         parseFloat(document.getElementById("svc-price").value) || null,
+    price_label:   document.getElementById("svc-price-label").value,
+    contact_wa:    document.getElementById("svc-wa").value.trim(),
+    image_url:     document.getElementById("svc-image").value.trim(),
+    status:        "pending",
+  });
+
+  if (error) {
+    msg.textContent = "❌ Error: " + error.message;
+    msg.style.color = "#ff5050";
+  } else {
+    msg.textContent = "✅ Submitted! DealsNut will review and approve your listing soon.";
+    msg.style.color = "#00c864";
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById("service-form").style.display = "none";
+      document.getElementById("toggle-service-form-btn").textContent = "+ List New Service";
+      loadMyServices(session.user.id);
+    }, 2000);
+  }
+
+  msg.style.display = "block";
+  btn.disabled = false;
+  btn.textContent = "Submit for Approval";
+});
+
+// --- Freelancer: Delete a Service ---
+async function deleteService(serviceId) {
+  if (!confirm("Are you sure you want to delete this service listing?")) return;
+  const { error } = await db.from("freelancer_services").delete().eq("id", serviceId);
+  if (!error) {
+    const { data: { session } } = await db.auth.getSession();
+    if (session) loadMyServices(session.user.id);
+  }
+}
