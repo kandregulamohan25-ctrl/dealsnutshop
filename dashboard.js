@@ -59,6 +59,12 @@ async function loadDashboard(user) {
       document.getElementById("freelancer-section").style.display = "block";
       loadMyServices(user.id);
     }
+    
+    // Show admin section if role is admin
+    if (role === "admin") {
+      document.getElementById("admin-section").style.display = "block";
+      loadAdminPanel();
+    }
   }
 
   // Load orders
@@ -264,5 +270,54 @@ async function deleteService(serviceId) {
   if (!error) {
     const { data: { session } } = await db.auth.getSession();
     if (session) loadMyServices(session.user.id);
+  }
+}
+
+// --- Admin: Load Pending Services ---
+async function loadAdminPanel() {
+  const list = document.getElementById("admin-services-list");
+  
+  const { data: services, error } = await db
+    .from("freelancer_services")
+    .select("*, profiles(full_name)")
+    .eq("status", "pending")
+    .order("created_at", { ascending: false });
+
+  if (error || !services || services.length === 0) {
+    list.innerHTML = `<div class="empty-state">No pending approvals! You are all caught up.</div>`;
+    return;
+  }
+
+  list.innerHTML = services.map((s) => {
+    return `
+    <div class="order-item" style="align-items:flex-start; flex-direction:column; gap:10px; border-left: 3px solid var(--coral);">
+      <div style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:8px;">
+        <div>
+          <div class="order-name">${s.title} <span style="color:var(--muted); font-weight:500;">by ${s.profiles?.full_name || 'Unknown'}</span></div>
+          <div style="font-size:0.78rem; color:var(--muted);">
+            ${s.category || ""} ${s.price ? "· ₹" + s.price + " " + (s.price_label || "") : ""}
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button onclick="updateServiceStatus(${s.id}, 'approved')" class="button button--primary" style="padding: 4px 12px; font-size: 0.75rem;">Approve</button>
+          <button onclick="updateServiceStatus(${s.id}, 'rejected')" style="background:transparent; border:1px solid var(--line); border-radius:6px; color:var(--coral); cursor:pointer; font-size:0.75rem; font-weight:700; padding:4px 12px;">Reject</button>
+        </div>
+      </div>
+      <p style="font-size:0.82rem; color:var(--muted); margin:0;">${s.description || ""}</p>
+    </div>`;
+  }).join("");
+}
+
+// --- Admin: Approve/Reject Service ---
+async function updateServiceStatus(serviceId, newStatus) {
+  const { error } = await db
+    .from("freelancer_services")
+    .update({ status: newStatus })
+    .eq("id", serviceId);
+
+  if (!error) {
+    loadAdminPanel(); // Refresh the list
+  } else {
+    alert("Error updating status: " + error.message);
   }
 }

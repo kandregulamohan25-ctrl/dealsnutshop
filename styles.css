@@ -1075,10 +1075,10 @@ textarea {
 
 .auth-form input,
 .auth-form select {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--paper-strong);
   border: 1px solid var(--line);
   border-radius: 6px;
-  color: #fff;
+  color: var(--ink);
   font-family: inherit;
   font-size: 0.95rem;
   outline: none;
@@ -1093,8 +1093,8 @@ textarea {
 }
 
 .auth-form select option {
-  background: #1a1a1a;
-  color: #fff;
+  background: var(--paper-strong);
+  color: var(--ink);
 }
 
 /* ============================================================

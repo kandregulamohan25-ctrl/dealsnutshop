@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details | DealsNut</title>
+  <meta name="description" content="Product details on DealsNut." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%23e35b4f'/><text x='50' y='72' font-family='Arial,sans-serif' font-size='50' font-weight='900' text-anchor='middle' fill='white'>DN</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Dedicated Product Page Styles */
+    .product-page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 20px 60px;
+    }
+    .pdp-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    @media (max-width: 768px) {
+      .pdp-container {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 24px;
+      }
+    }
+    .pdp-image-wrap {
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .pdp-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .pdp-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pdp-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .pdp-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    .pdp-price {
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 800;
+      margin: 0 0 24px;
+    }
+    .pdp-desc {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1.05rem;
+      margin: 0 0 32px;
+    }
+    .pdp-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-massive {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-massive-wa { background: #25D366; color: #fff; }
+    .btn-massive-wa:hover { background: #20b858; transform: translateY(-2px); }
+    .btn-massive-ig { background: #E1306C; color: #fff; }
+    .btn-massive-ig:hover { background: #c1295c; transform: translateY(-2px); }
+    
+    .cross-sell-section {
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    .cross-sell-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Simple header -->
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Back to DealsNut home">
+      <span class="brand-mark">DN</span>
+      <span class="brand-name">DealsNut</span>
+    </a>
+  </header>
+
+  <main class="product-page">
+    <div id="pdp-wrapper">
+      <div class="loading-spinner" style="text-align:center; padding:100px;">Loading product...</div>
+    </div>
+
+    <!-- Cross-sell Section -->
+    <section class="cross-sell-section">
+      <h2>More from DealsNut</h2>
+      <div class="product-grid" id="product-grid">
+        <!-- Injected via script.js -->
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

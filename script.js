@@ -18,31 +18,40 @@ const products = [
   // Add more products below this line by copying the block above ↑
 ];
 
-function renderProducts() {
+function renderProducts(excludeId = null) {
   const grid = document.getElementById("product-grid");
   if (!grid) return;
 
-  if (products.length === 0) {
+  const filteredProducts = excludeId 
+    ? products.filter(p => p.id !== excludeId)
+    : products;
+
+  if (filteredProducts.length === 0) {
     grid.innerHTML = `<p style="color: var(--muted); text-align:center; grid-column: 1/-1;">No products listed yet. Check back soon!</p>`;
     return;
   }
 
-  grid.innerHTML = products.map((p) => {
+  grid.innerHTML = filteredProducts.map((p) => {
     const waText = encodeURIComponent(
       `Hi DealsNut! 🛍️ I want to order "${p.name}" for ₹${p.price}. Is it available? Please confirm!`
     );
     const igLink = `https://www.instagram.com/dealsnut_shop/`;
     const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+    const productLink = `product.html?id=${p.id}`;
 
     return `
     <article class="product-card ${!p.available ? "product-card--unavailable" : ""}">
-      <div class="product-image-wrap">
-        <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" />
-        <span class="product-badge">${p.category}</span>
-        ${!p.available ? `<div class="product-sold-out">Out of Stock</div>` : ""}
-      </div>
+      <a href="${productLink}" style="text-decoration:none; color:inherit;">
+        <div class="product-image-wrap">
+          <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" />
+          <span class="product-badge">${p.category}</span>
+          ${!p.available ? `<div class="product-sold-out">Out of Stock</div>` : ""}
+        </div>
+      </a>
       <div class="product-info">
-        <h3 class="product-name">${p.name}</h3>
+        <a href="${productLink}" style="text-decoration:none; color:inherit;">
+          <h3 class="product-name">${p.name}</h3>
+        </a>
         <p class="product-desc">${p.description}</p>
         <div class="product-footer">
           <span class="product-price">₹${p.price}</span>
