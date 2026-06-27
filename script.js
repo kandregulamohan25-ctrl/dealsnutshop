@@ -6,16 +6,7 @@
 const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // ← Replace with your WhatsApp Business number
 
 const products = [
-  {
-    id: 1,
-    name: "Silk Thread Bangles (Set of 4)",
-    price: 299,
-    description: "Handcrafted magenta silk thread bangles with kundan mirror stone work. Perfect for festivals, weddings, and traditional occasions.",
-    category: "Jewellery",
-    image: "assets/silk-bangles.png",
-    available: true,
-  },
-  // Add more products below this line by copying the block above ↑
+  // Add more products below this line!
 ];
 
 function renderProducts(excludeId = null) {
