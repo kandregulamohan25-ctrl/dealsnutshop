@@ -12,7 +12,7 @@ const products = [
     price: 499,
     description: "Soft silicone panda night light with a warm glow. Features tap control, USB rechargeable battery, and comes with a cute striped scarf. Perfect for kids and cozy bedrooms.",
     category: "Home Decor",
-    image: "assets/panda-light.jpg",
+    image: "assets/panda-light.png",
     available: true,
   }
 ];
