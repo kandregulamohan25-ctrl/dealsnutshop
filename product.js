@@ -37,89 +37,81 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   wrapper.innerHTML = `
-    <div class="pdp-container">
-      <div class="pdp-gallery">
-        <div class="pdp-image-main-wrap">
-          <img src="${product.images ? product.images[0] : ''}" alt="${product.name}" class="pdp-image-main" id="main-image" />
-          <span class="pdp-badge">${product.category}</span>
-        </div>
-        <div class="pdp-thumbnails">
-          ${thumbHtml}
-        </div>
-      </div>
-      
-      <div class="pdp-info">
-        <div class="pdp-reviews">
-          <span class="pdp-stars">★★★★★</span>
-          <span>4.9 (124 reviews)</span>
-        </div>
+<!-- UniSeoul Aesthetic Product Section -->
+<section class="premium-product-container">
+    <div class="uniseoul-grid">
         
-        <h1 class="pdp-title">${product.name}</h1>
-        
-        <div class="pdp-price-wrap">
-          <span class="pdp-price">₹${product.price}</span>
-          <span class="pdp-price-compare">₹${originalPrice}</span>
-          <span class="pdp-discount-badge">50% OFF</span>
-        </div>
-        
-        <p class="pdp-desc">${product.description}</p>
-        
-        <ul class="pdp-features">
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Premium Quality Material</li>
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Fast & Free Delivery Options</li>
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% Satisfaction Guaranteed</li>
-        </ul>
-        
-        <div class="pdp-actions">
-          ${product.available ? `
-            <a href="${fbLink}" target="_blank" rel="noreferrer" class="btn-massive btn-massive-fb">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Buy on Facebook
-            </a>
-          ` : `
-            <div style="padding: 16px; background: rgba(255,255,255,0.05); color: var(--muted); border-radius: 12px; text-align: center; font-weight: 700; font-size: 1.1rem;">
-              Currently Out of Stock
+        <!-- Left Side: Large Visual Component -->
+        <div class="visual-gallery">
+            <div class="hero-frame">
+                <img src="${product.images ? product.images[0] : ''}" id="main-display" alt="${product.name}">
+                <!-- Video Mini Thumbnail as seen in UniSeoul -->
+                <div class="video-badge">
+                    <span class="play-icon">▶</span>
+                    <p>WATCH IT IN ACTION</p>
+                </div>
             </div>
-          `}
+            <div class="pdp-thumbnails" style="margin-top: 16px;">
+              ${thumbHtml}
+            </div>
         </div>
+        
+        <!-- Right Side: Clean E-Commerce Details Panel -->
+        <div class="details-panel">
+            <div class="meta-header" style="color: #004d40; font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.5px;">
+                <span class="stars" style="color: #FFB800;">★★★★★</span>
+                <span class="sales-count" style="margin-left: 8px;">4.9 STARS | 300+ HAPPY CUTIES</span>
+            </div>
+            
+            <h1 class="item-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #161716; margin: 0 0 16px; line-height: 1.1;">${product.name}</h1>
+            
+            <div class="price-row" style="margin-bottom: 24px;">
+                <span class="price-tag" style="font-size: 2rem; font-weight: 800; color: #004d40;">Rs. ${product.price}</span>
+                <span class="price-compare" style="font-size: 1.2rem; color: #9e9e9e; text-decoration: line-through; margin-left: 12px; font-weight: 600;">MRP Rs. ${originalPrice}</span>
+                <div class="tax-info" style="font-size: 0.85rem; color: #9e9e9e; margin-top: 4px;">* Inclusive Of All Taxes</div>
+            </div>
+            
+            <!-- Clean Specs Grid -->
+            <div class="specs-table-box">
+                <h3 class="box-label" style="font-size: 0.9rem; margin-top: 0; margin-bottom: 16px; color: #004d40;">SPECIFICATION</h3>
+                <div class="specs-inner-grid">
+                    <div class="spec-cell">
+                        <span class="label">Material</span>
+                        <span class="value">SILICONE</span>
+                    </div>
+                    <div class="spec-cell">
+                        <span class="label">Dimensions</span>
+                        <span class="value">10.9 x 9.5 x 10.5 CM</span>
+                    </div>
+                    <div class="spec-cell">
+                        <span class="label">Color</span>
+                        <span class="value">WHITE</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="trust-badges">
-          <div class="trust-badge">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-            <span>Fast<br>Shipping</span>
-          </div>
-          <div class="trust-badge">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            <span>Secure<br>Payment</span>
-          </div>
-          <div class="trust-badge">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
-            <span>Satisfaction<br>Guarantee</span>
-          </div>
-        </div>
+            <!-- Actions -->
+            <div style="margin-top: 32px;">
+              ${product.available ? `
+                <a href="${igLink}" target="_blank" rel="noreferrer" class="btn-massive" style="background: #E1306C; color: #fff; text-decoration: none; padding: 18px; border-radius: 12px; display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; text-transform: uppercase;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                  Order via Instagram DM
+                </a>
+              ` : `
+                <div style="padding: 16px; background: rgba(0,0,0,0.05); color: #9e9e9e; border-radius: 12px; text-align: center; font-weight: 700; font-size: 1.1rem;">
+                  Currently Out of Stock
+                </div>
+              `}
+            </div>
 
-        <!-- Accordions -->
-        <div class="accordion">
-          <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>Description</span>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-          <div class="accordion-content">
-            <p>${product.description}</p>
-          </div>
+            <!-- Localized Destination Banner -->
+            <div class="island-shipping-bar">
+                <p>✈️ <strong>July 5th Mainland Drop:</strong> Arriving in Port Blair next week! Reserve yours via DM for local pickup in Pather Gudda on July 6th.</p>
+            </div>
+            
         </div>
-        <div class="accordion">
-          <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>Shipping & Delivery</span>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-          <div class="accordion-content">
-            <p>We process all orders within 24 hours. Standard shipping takes 3-5 business days across India.</p>
-          </div>
-        </div>
-
-      </div>
     </div>
+</section>
   `;
 
   if (typeof renderProducts === "function") {

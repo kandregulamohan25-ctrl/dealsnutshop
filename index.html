@@ -32,13 +32,12 @@
         <span class="brand-mark">DN</span>
         <span class="brand-name">DealsNut</span>
       </a>
-      <div class="header-right">
+      <div class="header-right" style="display: flex; align-items: center; gap: 12px;">
         <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
           <a href="#shop">Shop</a>
           <a href="#services-board">Services</a>
           <a href="#marketplace">Marketplace</a>
           <a href="#projects">Projects</a>
-          <button id="auth-nav-btn" class="button button--ghost button--small" style="margin-left: 12px; height: 32px; min-height: unset;">Sign In</button>
         </nav>
 
         <div class="social-icons" aria-label="Social media links">
@@ -53,7 +52,10 @@
             </svg>
           </a>
         </div>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        
+        <button id="auth-nav-btn" class="button button--primary button--small" style="height: 32px; min-height: unset; padding: 0 12px; font-size: 0.85rem; border-radius: 8px;">Sign In</button>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" style="margin-left: 8px;">
           <span></span>
           <span></span>
         </button>
