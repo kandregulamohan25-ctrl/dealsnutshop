@@ -34,38 +34,62 @@
         gap: 24px;
       }
     }
-    .pdp-image-wrap {
-      background: #111;
+    /* Image Gallery */
+    .pdp-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pdp-image-main-wrap {
+      background: var(--paper-strong);
+      border: 1px solid var(--line);
       border-radius: 12px;
       overflow: hidden;
       aspect-ratio: 1/1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
     }
-    .pdp-image {
+    .pdp-image-main {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
     }
-    .pdp-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: var(--gold);
-      color: #000;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 6px 12px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .pdp-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
     }
-    .pdp-info {
+    .pdp-thumb {
+      aspect-ratio: 1/1;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+    }
+    .pdp-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .pdp-thumb.active, .pdp-thumb:hover {
+      opacity: 1;
+      border-color: var(--gold);
+    }
+
+    /* Product Info Section */
+    .pdp-reviews {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .pdp-stars {
+      color: #FFB800;
+      letter-spacing: 2px;
     }
     .pdp-title {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -73,11 +97,31 @@
       margin: 0 0 16px;
       line-height: 1.2;
     }
+    .pdp-price-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 24px;
+    }
     .pdp-price {
       font-size: 2rem;
-      color: var(--gold);
+      color: var(--coral);
       font-weight: 800;
-      margin: 0 0 24px;
+    }
+    .pdp-price-compare {
+      font-size: 1.2rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 600;
+    }
+    .pdp-discount-badge {
+      background: var(--coral);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
     }
     .pdp-desc {
       color: var(--muted);
@@ -85,28 +129,104 @@
       font-size: 1.05rem;
       margin: 0 0 32px;
     }
+    
+    /* Features */
+    .pdp-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+    }
+    .pdp-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .pdp-features svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* Actions */
     .pdp-actions {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-bottom: 32px;
     }
     .btn-massive {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 16px;
-      font-size: 1.1rem;
+      padding: 18px;
+      font-size: 1.15rem;
       font-weight: 800;
       border-radius: 12px;
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .btn-massive-fb { background: #1877F2; color: #fff; }
-    .btn-massive-fb:hover { background: #166fe5; transform: translateY(-2px); }
+    .btn-massive-fb:hover { background: #166fe5; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(24, 119, 242, 0.3); }
     .btn-massive-ig { background: #E1306C; color: #fff; }
     .btn-massive-ig:hover { background: #c1295c; transform: translateY(-2px); }
+    
+    /* Trust Badges */
+    .trust-badges {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+      margin-bottom: 32px;
+    }
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .trust-badge svg {
+      color: var(--ink);
+    }
+
+    /* Accordion */
+    .accordion {
+      border-bottom: 1px solid var(--line);
+    }
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      user-select: none;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .accordion.open .accordion-content {
+      max-height: 500px;
+      padding-bottom: 16px;
+    }
+    .accordion.open .accordion-header svg {
+      transform: rotate(180deg);
+    }
     
     .cross-sell-section {
       border-top: 1px solid var(--line);

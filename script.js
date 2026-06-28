@@ -12,7 +12,13 @@ const products = [
     price: 499,
     description: "Soft silicone panda night light with a warm glow. Features tap control, USB rechargeable battery, and comes with a cute striped scarf. Perfect for kids and cozy bedrooms.",
     category: "Home Decor",
-    image: "assets/panda-light.png",
+    images: [
+      "assets/panda-1.jpg",
+      "assets/panda-2.jpg",
+      "assets/panda-3.jpg",
+      "assets/panda-4.jpg",
+      "assets/panda-5.jpg"
+    ],
     available: true,
   }
 ];
@@ -42,7 +48,7 @@ function renderProducts(excludeId = null) {
     <article class="product-card ${!p.available ? "product-card--unavailable" : ""}">
       <a href="${productLink}" style="text-decoration:none; color:inherit;">
         <div class="product-image-wrap">
-          <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" />
+          <img src="${p.images[0]}" alt="${p.name}" class="product-image" loading="lazy" />
           <span class="product-badge">${p.category}</span>
           ${!p.available ? `<div class="product-sold-out">Out of Stock</div>` : ""}
         </div>
